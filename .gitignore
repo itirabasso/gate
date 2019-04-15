@@ -1,5 +1,5 @@
 #Buidler files
-\./cache/*
-\./artifacts/*
+cache/*
+artifacts/
 node_modules/
 .env
