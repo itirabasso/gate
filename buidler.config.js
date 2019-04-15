@@ -1,13 +1,4 @@
-const HDWalletProvider = require('truffle-hdwallet-provider')
-
-const createWalletProvider = (mnemonic, rpcEndpoint) =>
-  new HDWalletProvider(mnemonic, rpcEndpoint)
-
-const createInfuraProvider = (network = 'mainnet') =>
-  createWalletProvider(
-    process.env.MNEMONIC || '',
-    `https://${network}.infura.io/${process.env.INFURA_API_KEY}`
-  )
+require('@nomiclabs/buidler-truffle4')
 
 require('./scripts/cmd')
 
@@ -22,12 +13,14 @@ module.exports = {
   },
   networks: {
     mainnet: {
-      provider: () => createInfuraProvider('mainnet'),
+      url: `https://mainnet.infura.io/${process.env.INFURA_API_KEY}`,
+      mnemonic: process.env.MNEMONIC,
       network_id: 1,
       gas: 70000000
     },
     ropsten: {
-      provider: () => createInfuraProvider('ropsten'),
+      url: `https://ropsten.infura.io/${process.env.INFURA_API_KEY}`,
+      mnemonic: process.env.MNEMONIC,
       network_id: 3,
       gas: 30000000
     },
@@ -37,5 +30,9 @@ module.exports = {
       network_id: '*',
       gas: 100000000
     }
+  },
+  solc: {
+    version: '0.4.24',
+    evmVersion: 'homestead'
   }
 }
