@@ -14,15 +14,27 @@ module.exports = {
   networks: {
     mainnet: {
       url: `https://mainnet.infura.io/${process.env.INFURA_API_KEY}`,
-      mnemonic: process.env.MNEMONIC,
+      accounts: [
+        {
+          privateKey: `${process.env.PRIVATE_KEY}`,
+          balance: 1000000000000000000000
+        }
+      ],
       network_id: 1,
-      gas: 70000000
+      gas: 70000000,
+      gasPrice: 0x12a05f200
     },
     ropsten: {
       url: `https://ropsten.infura.io/${process.env.INFURA_API_KEY}`,
-      mnemonic: process.env.MNEMONIC,
+      accounts: [
+        {
+          privateKey: `${process.env.PRIVATE_KEY}`,
+          balance: 1000000000000000000000000
+        }
+      ],
       network_id: 3,
-      gas: 30000000
+      gas: 30000000,
+      gasPrice: 0x12a05f200
     },
     development: {
       host: 'localhost',
